@@ -33,7 +33,7 @@ import {default as TripLayer} from './trip-layer/trip-layer';
 import {default as S2GeometryLayer} from './s2-geometry-layer/s2-geometry-layer';
 
 // base layer
-export {default as Layer} from './base-layer';
+export {default as Layer, OVERLAY_TYPE, colorMaker} from './base-layer';
 
 // individual layers
 export const KeplerGlLayers = {

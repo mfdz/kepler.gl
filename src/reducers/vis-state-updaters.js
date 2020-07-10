@@ -84,7 +84,7 @@ import {processFileContent} from 'actions/vis-state-actions';
 // type imports
 /** @typedef {import('./vis-state-updaters').Field} Field */
 /** @typedef {import('./vis-state-updaters').Filter} Filter */
-/** @typedef {import('./vis-state-updaters').Dataset} Dataset */
+/** @typedef {import('./vis-state-updaters').KeplerTable} KeplerTable */
 /** @typedef {import('./vis-state-updaters').VisState} VisState */
 /** @typedef {import('./vis-state-updaters').Datasets} Datasets */
 /** @typedef {import('./vis-state-updaters').AnimationConfig} AnimationConfig */
@@ -376,10 +376,6 @@ export function layerTypeChangeUpdater(state, action) {
 
   newLayer.assignConfigToLayer(oldLayer.config, oldLayer.visConfigSettings);
 
-  // if (newLayer.config.dataId) {
-  //   const dataset = state.datasets[newLayer.config.dataId];
-  //   newLayer.updateLayerDomain(dataset);
-  // }
   newLayer.updateLayerDomain(state.datasets);
   const {layerData, layer} = calculateLayerData(newLayer, state);
   let newState = updateStateWithLayerAndData(state, {layerData, layer, idx});
@@ -422,12 +418,12 @@ export function layerVisualChannelChangeUpdater(state, action) {
   if (!oldLayer.config.dataId) {
     return state;
   }
-  const dataset = state.datasets[oldLayer.config.dataId];
+  const table = state.datasets[oldLayer.config.dataId];
 
   const idx = state.layers.findIndex(l => l.id === oldLayer.id);
   const newLayer = oldLayer.updateLayerConfig(newConfig);
 
-  newLayer.updateLayerVisualChannel(dataset, channel);
+  newLayer.updateLayerVisualChannel(table, channel);
 
   const oldLayerData = state.layerData[idx];
   const {layerData, layer} = calculateLayerData(newLayer, state, oldLayerData);

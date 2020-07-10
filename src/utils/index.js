@@ -20,7 +20,7 @@
 
 export {maybeToDate, roundValToStep, timeToUnixMilli} from './data-utils';
 export {updateAllLayerDomainData} from '../reducers/vis-state-updaters';
-export {findPointFieldPairs} from '../utils/dataset-utils';
 export {getHexFields} from '../layers/h3-hexagon-layer/h3-utils';
 export {hexToRgb} from './color-utils';
 export {containValidTime} from '../layers/trip-layer/trip-utils';
+export {KeplerTable, findPointFieldPairs} from './table-utils/kepler-table';
